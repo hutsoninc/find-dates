@@ -1,10 +1,12 @@
 # find-dates
 
-[![Build Status](https://travis-ci.com/hutsoninc/find-dates.svg?branch=master)](https://travis-ci.com/hutsoninc/find-dates) [![Current npm package version](https://img.shields.io/npm/v/find-dates.svg)](https://www.npmjs.com/package/find-dates)
+[![Current npm package version](https://img.shields.io/npm/v/find-dates.svg)](https://www.npmjs.com/package/find-dates) [![Build Status](https://travis-ci.com/hutsoninc/find-dates.svg?branch=master)](https://travis-ci.com/hutsoninc/find-dates)
 
 Find dates in a string where the format is unknown.
 
 ## Usage
+
+`npm install find-dates`
 
 ```js
 // JavaScript

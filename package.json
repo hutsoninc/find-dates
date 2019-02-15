@@ -10,6 +10,22 @@
     "test": "jest",
     "tsc": "npm run clean && tsc"
   },
+  "devDependencies": {
+    "@types/jest": "^24.0.4",
+    "jest": "^23.6.0",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.3.3"
+  },
+  "author": {
+    "name": "AustinLeeGordon",
+    "email": "gordon.austin2@gmail.com",
+    "url": "http://www.austinleegordon.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hutsoninc/find-dates"
+  },
   "keywords": [
     "extract",
     "parse",
@@ -18,17 +34,5 @@
     "string",
     "format"
   ],
-  "author": {
-    "name": "AustinLeeGordon",
-    "email": "gordon.austin2@gmail.com",
-    "url": "http://www.austinleegordon.com"
-  },
-  "license": "MIT",
-  "devDependencies": {
-    "@types/jest": "^24.0.4",
-    "jest": "^23.6.0",
-    "rimraf": "^2.6.3",
-    "ts-jest": "^23.10.5",
-    "typescript": "^3.3.3"
-  }
+  "license": "MIT"
 }
