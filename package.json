@@ -1,0 +1,34 @@
+{
+  "name": "find-dates",
+  "version": "0.0.0",
+  "description": "Find dates in a string where the format is unknown.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run tsc",
+    "test": "jest",
+    "tsc": "npm run clean && tsc"
+  },
+  "keywords": [
+    "extract",
+    "parse",
+    "find",
+    "date",
+    "string",
+    "format"
+  ],
+  "author": {
+    "name": "AustinLeeGordon",
+    "email": "gordon.austin2@gmail.com",
+    "url": "http://www.austinleegordon.com"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "^24.0.4",
+    "jest": "^23.6.0",
+    "rimraf": "^2.6.3",
+    "ts-jest": "^23.10.5",
+    "typescript": "^3.3.3"
+  }
+}
