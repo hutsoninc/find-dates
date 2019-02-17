@@ -1,36 +1,16 @@
-import { monthVariations } from './utils/'
+import createTests from './create-tests';
 
-export function extractDates(input: string, options?: { regexModifiers: string }): string[] {
+export interface FindDatesOptions {
+    delimiters?: string
+}
+
+export function findDates(input: string, options?: FindDatesOptions): object[] {
 
     options = Object.assign({
-        regexModifiers: 'gi'
+        delimiters: '-\/'
     }, options);
 
-    // Common expressions
-    let exp = {
-        month: '(' + monthVariations.join('|') + ').?',
-        day: '(' +
-            // 01-31
-            '[3][0-1]|[0-2]?[0-9]' +
-            // End of line, space after, comma after, or 'st', 'nd', 'rd', 'th' (doesn't include in match)
-            '(?=($|\\s|,|(st|nd|rd|th)))' +
-            ')' +
-            // Include 'st', 'nd', 'rd', 'th' in match (optional)
-            '(st|nd|rd|th)?',
-        year: '(' +
-            // Include numbers 00-99 (with optional ' in front) and 0000-9999
-            '(\\d{4}|\'?\\d{2})' +
-            ')',
-    }
-
-    // Regex matchers to loop over against input
-    let tests: any[] = [];
-
-    tests.push(exp.month + '\\s+' + exp.day)
-
-    tests.push(exp.month + '\\s+' + exp.day + ',?\\s+' + exp.year)
-
-    tests = tests.map(str => new RegExp(str, options.regexModifiers))
+    const tests: RegExp[] = createTests(options);
 
     let match = [];
 
@@ -53,40 +33,34 @@ export function extractDates(input: string, options?: { regexModifiers: string }
     // Loop over matches, remove less specific matches with same index
     match = filterMatches(match);
 
-    // Get array of matched strings to return
-    match = match.map(m => m.match);
+    // Sort matches by index
+    match.sort((a, b) => {
+        a = a.index;
+        b = b.index;
+        if (a < b) return -1;
+        if (a > b) return 1;
+        return;
+    })
 
     return match;
 
 }
 
-function filterMatches(arr, i?) {
+function filterMatches(arr: { match: string, index: number }[]): { match: string, index: number }[] {
 
-    let initialLen = arr.length
+    let filtered = [];
 
-    if (i === undefined) {
-        i = arr.length
-    }
-
-    let current = arr[i - 1];
-
-    for (let j = i - 2; j >= 0; j--) {
-        // Check if in same location
-        if (arr[j].index === current.index) {
-            // Check which is shoter and remove
-            if (arr[j].match.length >= current.match.length) {
-                arr.length = i - 1
-            } else {
-                arr.splice(j, 1);
+    for (let i = 0; i < arr.length; i++) {
+        let current = arr[i];
+        let matchIndex = filtered.findIndex(obj => obj.index === current.index);
+        if (matchIndex >= 0) {
+            if (filtered[matchIndex].match.length < current.match.length) {
+                filtered[matchIndex] = current;
             }
-            i = arr.length
-            continue
+            continue;
         }
+        filtered.push(current);
     }
 
-    if (initialLen !== arr.length) {
-        filterMatches(arr, i);
-    }
-
-    return arr;
+    return filtered;
 }

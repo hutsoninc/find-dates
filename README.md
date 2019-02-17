@@ -9,42 +9,44 @@ Find dates in a string where the format is unknown.
 `npm install find-dates`
 
 ```js
-// JavaScript
-const { extractDates } = require("find-dates");
+const { findDates } = require("find-dates");
 
-extractDates("My birthday is on June 21st!");
-// => ["June 21st"]
+findDates("My birthday is on June 21st!");
+// => [{ match: "June 21st", index: 18 ]
 
-extractDates("We're closed on December 24th and December 25th.");
-// => ["December 24th", "December 25th"]
+findDates("We're closed on December 24th and December 25th.");
+// => [{ match: "December 24th", index: 16 }, { match: "December 25th", index: 34 }]
 ```
 
 ## Todo
 
 Work in progress. Here's a rough plan:
 
-- [ ] Figure out default return value
-    - Array of all matched strings
-    - Array of dates interpreted from strings
-        - How to handle date ranges with this?
-    - Array of objects with match string and index of that match
+- [x] Figure out default return value
 - [x] Date as string (Ex: October 31st, 2018; Oct. 31, 2018; Oct 31 '18, Oct 31)
     - [x] Day numbers, 01-09, modifiers (st, nd, rd, th)
     - [x] Month variants
     - [x] Optional year
 - [ ] Match standard local date formats (mm/dd/yyyy, mm-dd-yyyy, etc...)
+    - [x] MM/DD/YYYY and MM/DD/YY
 - [ ] Date ranges (from x to y, x through y)
 - [ ] Day of week
 - [ ] Handle formats like:
-    - [ ] May the 4th
-    - [ ] 20th of November
+    - [x] May the 4th
+    - [x] 20th of November
     - [ ] May 12th-13th, May 12th and 13th, May 12th or 13th
+        - [ ] Return as matched or as ['May 12th', 'May 13th']
+    - [x] May of 2018
+    - [x] May 2018
+    - [x] May '18
 - [ ] Accept options
     - [ ] Only return first
     - [ ] Specify which months to search for
     - [ ] Change returned format
+    - [x] Custom delimiters on MM/DD/YYYY formats
 - [ ] More tests
 - [ ] Add linting
+- [ ] Refactor
 
 ## License
 
