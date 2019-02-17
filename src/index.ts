@@ -7,7 +7,7 @@ export interface FindDatesOptions {
 export function findDates(input: string, options?: FindDatesOptions): object[] {
 
     options = Object.assign({
-        delimiters: '-\/'
+        delimiters: '-/'
     }, options);
 
     const tests: RegExp[] = createTests(options);

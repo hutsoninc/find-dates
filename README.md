@@ -18,6 +18,26 @@ findDates("We're closed on December 24th and December 25th.");
 // => [{ match: "December 24th", index: 16 }, { match: "December 25th", index: 34 }]
 ```
 
+You may use this library in your Typescript project via:
+
+```ts
+import { findDates } from "find-dates";
+
+findDates("My birthday is on June 21st!");
+// => [{ match: "June 21st", index: 18 ]
+
+findDates("We're closed on December 24th and December 25th.");
+// => [{ match: "December 24th", index: 16 }, { match: "December 25th", index: 34 }]
+```
+
+### Options
+
+#### delimiters
+
+Delimiters to use when matching dates formatted as `MM/DD/YYYY` and `MM/DD/YY` where the delimiter is `/`. Some characters must be escaped for use in Regular Expressions. Setting this will override the default options, so if you to match `-` and `/` make sure to include them.
+
+Default: `-/`
+
 ## Todo
 
 Work in progress. Here's a rough plan:
