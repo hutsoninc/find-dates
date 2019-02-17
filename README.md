@@ -34,7 +34,7 @@ findDates("We're closed on December 24th and December 25th.");
 
 #### delimiters
 
-Delimiters to use when matching dates formatted as `MM/DD/YYYY` and `MM/DD/YY` where the delimiter is `/`. Some characters must be escaped for use in Regular Expressions. Setting this will override the default options, so if you to match `-` and `/` make sure to include them.
+Delimiters to use when matching dates formatted as `MM/DD/YYYY` and `MM/DD/YY` where the delimiter is `/`. Some characters must be escaped for use in Regular Expressions. Setting this will override the default options, so if you want to match `-` and `/` make sure to include them.
 
 Default: `-/`
 
